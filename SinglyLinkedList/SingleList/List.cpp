@@ -56,48 +56,17 @@ bool List::isCollectionClear()
 
 std::string List::toString()
 {
-	std::string collection;
-	if (this->head != nullptr)
+	std::stringstream buffer;
+	if (head != nullptr)
 	{
-
 		Node* current = head;
-		for (size_t i = 0; i < this->size; i++)
+		for (size_t i = 0; i < size; i++)
 		{
-			collection += std::to_string(current->data) + ' ';
+			buffer << current->data << ' ';
 			current = current->pointerNext;
 		}
-		return collection;
 	}
-	return collection;
-}
-
-List::List(List&& second) noexcept
-{
-	this->clear();
-	for (Node* node = second.head; node != nullptr; node = node->pointerNext)
-	{
-		this->pushBack(node->data);
-	}
-}
-
-List& List::operator=(const List& second) noexcept
-{
-	this->clear();
-	for (Node* node = second.head; node != nullptr; node = node->pointerNext)
-	{
-		this->pushBack(node->data);
-	}
-	return *this;
-}
-
-List& List::operator=(List&& second) noexcept
-{
-	this->clear();
-	for (Node* node = second.head; node != nullptr; node = node->pointerNext)
-	{
-		this->pushBack(node->data);
-	}
-	return *this;
+	return buffer.str();
 }
 
 void List::popFront()
@@ -123,12 +92,24 @@ List::~List()
 	clear();
 }
 
-
-List::List(const List& other) noexcept
+List::List(List&& second)
 {
-	this->clear();
-	for (Node* node = other.head; node != nullptr; node = node->pointerNext)
-	{
-		this->pushBack(node->data);
-	}
+	std::exchange(this->head, second.head);
+}
+
+List& List::operator=(const List& second)
+{
+	std::exchange(this->head, second.head);
+	return *this;
+}
+
+List& List::operator=(List&& second)
+{
+	std::exchange(this->head, second.head);
+	return *this;
+}
+
+List::List(const List& second)
+{
+	std::exchange(this->head, second.head);
 }

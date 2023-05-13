@@ -1,5 +1,6 @@
 #pragma once
 #include "Node.h"
+#include <string>
 
 /*
 @brief Class SinglyLinkedList
@@ -22,13 +23,13 @@ public:
 	@brief Copy an object of 'List' class 
 	@param Other other list which will be copied
 	*/
-	List(const List& other) noexcept;
+	List(const List& second);
 
 	/*
 	@brief Move an object of 'List' class to other
 	@param Second other list which will be moved
 	*/
-	List(List&& second) noexcept;
+	List(List&& second);
 
 	/*
 	@brief a function which delete a Node in front of List
@@ -82,14 +83,14 @@ public:
 	@param second List which will be copied
 	@return new copied List
 	*/
-	List& operator=(const List& second) noexcept;
+	List& operator=(const List& second);
 
 	/*
 	@brief function overloading the operator ==
 	@param second List which will be moved
 	@return moved List
 	*/
-	List& operator=(List&& second) noexcept;
+	List& operator=(List&& second);
 
 private:
 	int size;

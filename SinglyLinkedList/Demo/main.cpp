@@ -9,7 +9,7 @@ int main()
 	list1.pushBack(9);
 	std::cout << list1.toString() << "\t";
 	List list2;
-	list2.List::List(list1);
+	list2 = list1;
 	std::cout << list2.toString();
 	return 0;
 }
