@@ -29,7 +29,7 @@ public:
 	@brief Move an object of 'List' class to other
 	@param Second other list which will be moved
 	*/
-	List(List&& second);
+	List(List&& second) noexcept;
 
 	/*
 	@brief a function which delete a Node in front of List
@@ -90,7 +90,7 @@ public:
 	@param second List which will be moved
 	@return moved List
 	*/
-	List& operator=(List&& second);
+	List& operator=(List&& second) noexcept;
 
 private:
 	int size;

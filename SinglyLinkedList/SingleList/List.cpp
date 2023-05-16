@@ -13,7 +13,7 @@ void List::pushBack(int data)
 	}
 	else
 	{
-		Node* current = this->head;
+		Node* current = head;
 		while (current->pointerNext != nullptr)
 		{
 			current = current->pointerNext;
@@ -92,10 +92,17 @@ List::~List()
 	clear();
 }
 
-List::List(List&& second)
+List::List(List&& second) noexcept
 {
-	std::exchange(this->head, second.head);
+	if (this->head == nullptr)
+	{
+		for (Node* node = second.head; node != nullptr; node = node->pointerNext)
+		{
+			this->pushBack(node->data);
+		}
+	}
 }
+
 
 List& List::operator=(const List& second)
 {
@@ -103,9 +110,15 @@ List& List::operator=(const List& second)
 	return *this;
 }
 
-List& List::operator=(List&& second)
+List& List::operator=(List&& second) noexcept
 {
-	std::exchange(this->head, second.head);
+	if (this->head == nullptr)
+	{
+		for (Node* node = second.head; node != nullptr; node = node->pointerNext)
+		{
+			this->pushBack(node->data);
+		}
+	}
 	return *this;
 }
 

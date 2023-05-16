@@ -10,6 +10,7 @@ int main()
 	std::cout << list1.toString() << "\t";
 	List list2;
 	list2 = list1;
+
 	std::cout << list2.toString();
 	return 0;
 }
