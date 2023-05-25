@@ -120,3 +120,32 @@ List defaultList;
 Assert::IsTrue(defaultList.isCollectionClear());
 
 }
+TEST_METHOD(ComparionOperatorTets_ValidData_Success)
+
+{
+
+//Arrange
+
+List List1;
+
+List1.pushBack(4);
+
+List1.pushBack(5);
+
+std::string actual = List1.toString();
+
+//Act
+
+List List2;
+
+List2.pushBack(4);
+
+List2.pushBack(5);
+
+std::string actual = List2.toString();
+
+//Assert
+
+Assert::IsTrue(List1 == List2);
+
+}
