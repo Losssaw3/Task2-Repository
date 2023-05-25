@@ -149,3 +149,20 @@ std::string actual = List2.toString();
 Assert::IsTrue(List1 == List2);
 
 }
+
+TEST_METHOD(CopyOperatorTest_ValidData_Succeess)
+{
+  //Arrange
+  
+List defaultList;
+  
+List1.pushBack(4);
+
+List1.pushBack(5);
+
+//Act
+List copiedList;
+
+//Arrange
+Assert::IsFalse(copiedList == defaultList)
+}
