@@ -92,6 +92,13 @@ public:
 	*/
 	List& operator=(List&& second) noexcept;
 
+	/*
+	@brief function overloading comparison operator
+	@param second List will be compaired
+	@return true if content of the list equal to second list and false otherwise
+	*/
+	bool operator==(List& second);
+
 private:
 	int size;
 	Node* head;

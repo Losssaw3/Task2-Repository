@@ -103,10 +103,14 @@ List::List(List&& second) noexcept
 	}
 }
 
+bool List::operator==(List& second)
+{
+	return(this->toString() == second.toString());
+}
 
 List& List::operator=(const List& second)
 {
-	std::exchange(this->head, second.head);
+	std::__exchange(this->head, second.head);
 	return *this;
 }
 
@@ -124,5 +128,5 @@ List& List::operator=(List&& second) noexcept
 
 List::List(const List& second)
 {
-	std::exchange(this->head, second.head);
+	std::__exchange(this->head, second.head);
 }
