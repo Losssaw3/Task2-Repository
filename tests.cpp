@@ -17,7 +17,7 @@ std::string actual = defaultList.toString();
 
 std::stringstream expected;
 
-expected << 4 << ' ' << 5 << ' ';
+std::string expected {4 5 };
 
 std::string expectedString = expected.str();
 
@@ -45,7 +45,7 @@ std::string actual = defaultList.toString();
 
 std::stringstream expected;
 
-expected << 5 << ' ' << 4 << ' ';
+std::string expected {4 5 };
 
 std::string expectedString = expected.str();
 
