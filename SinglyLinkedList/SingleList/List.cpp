@@ -94,13 +94,7 @@ List::~List()
 
 List::List(List&& second) noexcept
 {
-	if (this->head == nullptr)
-	{
-		for (Node* node = second.head; node != nullptr; node = node->pointerNext)
-		{
-			this->pushBack(node->data);
-		}
-	}
+	std::__exchange(this->head, second.head);
 }
 
 bool List::operator==(List& second)
@@ -110,12 +104,6 @@ bool List::operator==(List& second)
 
 List& List::operator=(const List& second)
 {
-	std::__exchange(this->head, second.head);
-	return *this;
-}
-
-List& List::operator=(List&& second) noexcept
-{
 	if (this->head == nullptr)
 	{
 		for (Node* node = second.head; node != nullptr; node = node->pointerNext)
@@ -126,7 +114,19 @@ List& List::operator=(List&& second) noexcept
 	return *this;
 }
 
-List::List(const List& second)
+List& List::operator=(List&& second) noexcept
 {
 	std::__exchange(this->head, second.head);
+	return *this;
+}
+
+List::List(const List& second)
+{
+	if (this->head == nullptr)
+	{
+		for (Node* node = second.head; node != nullptr; node = node->pointerNext)
+		{
+			this->pushBack(node->data);
+		}
+	}
 }
